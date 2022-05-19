@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録</title>
+</head>
+<body>
+
+<!-- 新規登録フォーム -->
+<h1>新規登録</h1>
+<form action="/newAccount" method="post">
+		<!-- ログインフォーム -->
+		<input type="text" name="name" placeholder="名前"> 
+		<br>
+		<input type="text" name="address" placeholder="住所">
+		<br>
+		<input type="text" name="tel" placeholder="電話番号">
+		<br>
+		<input type="text" name="email" placeholder="メールアドレス">
+		<br>
+		<input type="text" name="pass" placeholder="パスワード">
+		<br>
+		<input type="submit" value="登録">
+		<span th:text="${message}" style="color:red"></span>
+	</form>
+</body>
+</html>

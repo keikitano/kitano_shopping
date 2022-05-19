@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+</head>
+<body>
+	<h1>商品一覧</h1>
+	<!-- 検索ボックス -->
+	<p>
+		<input type="text" name="itemname" placeholder="検索" />
+		<input type="submit" value="検索" />
+	</p>
+	<!-- カテゴリー -->
+	<p>
+		<a href="/book">本</a>
+		<a href="/dvd">DVD</a>
+	</p>
+	<!-- 一覧 -->
+	<table  border="1">
+		<tr>
+
+			<th>商品画像</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>商品内容</th>
+			
+		</tr>
+		
+		<tr th:each="item:${items}">
+			<td th:text="${item.picture}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+			<td input type="submit" value="商品内容" />
+			<td>
+
+	</table>
+</body>
+</html>
