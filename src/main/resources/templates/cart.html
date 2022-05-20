@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.tymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>カートの中身</title>
 </head>
 <body>
+	<h1>カートの中身</h1>
+
+	<table border="1">
+
+		<tr>
+
+
+			<th>商品名</th>
+			<th>値段</th>
+			<th>個数</th>
+			<th>削除</th>
+		</tr>
+		<tr>
+		<tr th:each="item:${items}">
+			<td th:text="${item.value.name}"></td>
+			<td th:text="${item.value.price}"></td>
+			<td th:text="${item.value.quantity}"></td>
+			<td>
+				<form th:action="|/itemDetail/deleteCart/${item.value.code}|"method="post">
+					<input type="submit" value="削除">
+			</td>
+			</form>
+		</tr>
+
+	</table>
+	<form action="/purchaseCart" method="post">
+		<input type="submit" value="購入">
+		
+	</form>
+	<a href="/showItem">商品詳細</a>
 
 </body>
 </html>

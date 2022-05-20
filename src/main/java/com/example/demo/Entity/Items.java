@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "items")
@@ -43,6 +44,9 @@ public class Items {
 	
 	@Column(name = "delete_flag")
 	private Integer deleteFlag;
+	
+	@Transient
+	private Integer quantity;
 	
 	public Items() {
 		super();
@@ -131,6 +135,12 @@ public class Items {
 	}
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 

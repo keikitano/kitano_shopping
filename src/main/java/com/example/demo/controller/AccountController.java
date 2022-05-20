@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.Entity.Items;
 import com.example.demo.Entity.Users;
+import com.example.demo.Repositry.ItemRepository;
 import com.example.demo.Repositry.UserRepository;
 
 @Controller
@@ -21,6 +25,8 @@ public class AccountController {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	ItemRepository itemRepository;
 	// top画面
 	@RequestMapping("/")
 	public String top() {
@@ -37,7 +43,7 @@ public class AccountController {
 
 	// ログインボタンを押したときの処理
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam("name") String name, @RequestParam("password") String pass,
+	public ModelAndView login(@RequestParam("name") String name, @RequestParam("pass") String pass,
 
 			ModelAndView mv) {
 		if (isNull(name) || isNull(pass)) {
@@ -47,11 +53,30 @@ public class AccountController {
 			return mv;
 		} else {
 			//新規登録で入力した情報を導入
-			Users users=(Users)session.getAttribute("users");
+//			Users users=(Users)session.getAttribute("users");
+//			if(users.getName()==name) {
+//				mv.setViewName("showItem");
+//			}
+			//nameとpassをとってくる
+			List<Users> userlist=userRepository.findByNameAndPass(name,pass);
+			//もしuserlistが一致しなかったら
+			if(userlist.size()==0) {
+				mv.addObject("message1", "一致しません");
+				mv.setViewName("login");
+			}
+			//一致したら
+			else {
+				//アイテム一覧を表示
+				List<Items> itemList=itemRepository.findAll();
+				mv.addObject("items",itemList);
+				mv.setViewName("showItem");
+			}
+			
+			
 			
 //			mv.addObject("name",name);
 //			mv.addObject("pass",pass);
-			mv.setViewName("showItem");
+			//mv.setViewName("showItem");
 		}
 
 		return mv;
@@ -92,6 +117,8 @@ public class AccountController {
 		}
 		return mv;
 	}
+	
+	
 
 	public boolean isNull(String text) {
 		return (text == null || text.length() == 0);

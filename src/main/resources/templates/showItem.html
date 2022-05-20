@@ -31,8 +31,8 @@
 			<td th:text="${item.picture}"></td>
 			<td th:text="${item.name}"></td>
 			<td th:text="${item.price}"></td>
-			<td input type="submit" value="商品内容" />
-			<td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細</a></td>
+			</tr>
 
 	</table>
 </body>
