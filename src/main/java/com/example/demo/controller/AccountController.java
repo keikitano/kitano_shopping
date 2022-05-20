@@ -123,5 +123,10 @@ public class AccountController {
 	public boolean isNull(String text) {
 		return (text == null || text.length() == 0);
 	}
+	//ログアウト
+	@RequestMapping("/logout")
+	public String logout() {
+		return login();
+	}
 
 }
