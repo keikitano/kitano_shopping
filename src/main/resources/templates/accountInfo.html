@@ -2,9 +2,76 @@
 <html xmlns:th="http://www.tymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>アカウント情報</title>
 </head>
 <body>
+
+	<h1>アカウント情報</h1>
+
+	<form action="/accountInfo" method="post"></form>
+	<table border="1">
+		<tr>
+			<td>お名前</td>
+			<td th:text="${session.accountInfo.name}"></td>
+		</tr>
+		<tr>
+			<td>住所</td>
+			<td th:text="${session.accountInfo.address}"></td>
+		</tr>
+		<tr>
+			<td>電話番号</td>
+			<td th:text="${session.accountInfo.tel}"></td>
+		</tr>
+		<tr>
+			<td>e-mail</td>
+			<td th:text="${session.accountInfo.email}"></td>
+		</tr>
+
+
+	</table>
+	<form action="/showItem">
+		<a href="/showItem">商品一覧戻る</a>
+	</form>
+	<hr>
+	<h1>お客様情報変更</h1>
+	<form action="/accountInfo" method="post">
+		<table>
+			<tr>
+				<td>お名前</td>
+				<td><input type="text" name="name" placeholder="名前"></td>
+			</tr>
+			<tr>
+				<td>住所</td>
+				<td><input type="text" name="address" placeholder="住所">
+				</td>
+			</tr>
+			<tr>
+				<td>電話番号</td>
+				<td><input type="text" name="tel" placeholder="電話番号"></td>
+			</tr>
+			<tr>
+				<td>e-mail</td>
+				<td><input type="text" name="email" placeholder="e-mail">
+				</td>
+			</tr>
+			<tr>
+				<td>パスワード</td>
+				<td><input type="text" name="pass" placeholder="password">
+				</td>
+			</tr>
+		</table>
+
+		<input type="submit" value="変更">
+	</form>
+	<hr>
+	<span th:text="${message}" style="color: red"></span>
+	<!-- 削除 -->
+	<form action="/deleteAccount" method="post">
+	<input type="submit" value="削除">
+	</form>
+	
+	
+
 
 </body>
 </html>

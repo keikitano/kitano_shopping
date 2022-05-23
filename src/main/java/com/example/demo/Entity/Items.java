@@ -76,6 +76,11 @@ public class Items {
 		
 		
 	}
+	public Items(String name,Integer price) {
+		super();
+	}
+	
+	
 	public Integer getCode() {
 		return code;
 	}

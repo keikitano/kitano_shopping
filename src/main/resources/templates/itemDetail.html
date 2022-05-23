@@ -5,30 +5,33 @@
 <title>商品詳細</title>
 </head>
 <body>
-<h1>商品詳細</h1>
-<form th:action="|/itemDetail/addCart/${code}|" method="post">
-	
+	<h1>商品詳細</h1>
+	<form th:action="|/itemDetail/addCart/${code}|" method="post">
 
-<table  border="1">
-		<tr>
 
-			<th>商品画像</th>
-			<th>商品名</th>
-			<th>値段</th>
-			
-			
-		</tr>
-		
-		<!--  <tr th:each="item:${items}">-->
+		<table border="1">
 			<tr>
-			<td th:text="${item.picture}"></td>
-			<td th:text="${item.name}"></td>
-			<td th:text="${item.price}"></td>
-			<td><input type="submit" value="カートに追加" /></td>
+
+				<th>商品画像</th>
+				<th>商品名</th>
+				<th>値段</th>
+				<th>追加</th>
+
 			</tr>
-			
-	</table>
-		</form>
-		
+
+			<!--  <tr th:each="item:${items}">-->
+			<tr>
+				<td><img th:src="|/${item.picture}|"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.price}"></td>
+				<td><input type="submit" value="カートに追加" /></td>
+			</tr>
+
+		</table>
+	</form>
+	<form action="/showItem">
+		<a href="/showItem">商品一覧戻る</a>
+	</form>
+
 </body>
 </html>

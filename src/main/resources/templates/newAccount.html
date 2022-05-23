@@ -10,6 +10,7 @@
 <h1>新規登録</h1>
 <form action="/newAccount" method="post">
 		<!-- ログインフォーム -->
+		
 		<input type="text" name="name" placeholder="名前"> 
 		<br>
 		<input type="text" name="address" placeholder="住所">
@@ -18,7 +19,7 @@
 		<br>
 		<input type="text" name="email" placeholder="メールアドレス">
 		<br>
-		<input type="text" name="pass" placeholder="パスワード">
+		<input type="password" name="pass" placeholder="パスワード">
 		<br>
 		<input type="submit" value="登録">
 		<span th:text="${message}" style="color:red"></span>

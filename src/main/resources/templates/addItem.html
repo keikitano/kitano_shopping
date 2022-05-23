@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.tymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>商品登録</title>
 </head>
 <body>
-
+<h1>出品</h1>
+<form action="/addItem" method="post">
+<table>
+			<tr>
+				<td>商品名</td>
+				<td><input type="text" name="name" placeholder="商品名"></td>
+			</tr>
+			<tr>
+				<td>値段</td>
+				<td><input type="text" name="price" placeholder="値段">
+				</td>
+			</tr>
+			
+		</table>
+		
+		<input type="submit" value="登録">
+</form>
 </body>
 </html>
