@@ -76,8 +76,16 @@ public class Items {
 		
 		
 	}
-	public Items(String name,Integer price) {
+	public Items(String name,Integer price,Integer stock,Integer delivaryDays,Integer categoryKey,String picture) {
 		super();
+		this.name=name;
+		this.price=price;
+		this.stock = stock;
+		this.delivaryDays = delivaryDays;
+		this.categoryKey = categoryKey;
+		this.date = new Date();
+		this.deleteFlag = 0;
+		this.picture=picture;
 	}
 	
 	

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Entity.Items;
@@ -32,63 +34,139 @@ public class ItemController {
 		mv.setViewName("itemDetail");
 		return mv;
 	}
-	//カートに入れるボタンを押したときの処理
-//	@RequestMapping(value="/itemDetail/addCart/{code}",method=RequestMethod.POST)
-//	public ModelAndView addcart(
-//			@PathVariable("code")int code,
-//			@RequestParam(name="quantity",defaultValue="1")int quantity,
-//			ModelAndView mv) {
-//		//セッションスコープからカート情報を取得する
-//		Cart cart=(Cart)session.getAttribute("cart");
-//		if(cart==null) {
-//			cart=new Cart();
-//			session.setAttribute("cart", cart);
-//		}
-//		
-//		//Cart cart=getCartFromSession();
-//		//商品コードをキーに商品情報を取得し、カートに追加する
-//		Items items=itemRepository.findById(code).get();
-//		
-//		
-//		cart.addCart(items,1);
-//		
-//		mv.addObject("items",cart.getItems());
-//		mv.addObject("total",cart.getTotal());
-//		mv.setViewName("cart");
-//		
-//		return mv;
-//	}
 	
-	//購入ぼたんを押したとき
-//	@RequestMapping(value="/purchaseCart")
-//	public ModelAndView purchaseCart(
-//			
-//			ModelAndView mv) {
-//
-//		mv.setViewName("purchaseCart");
-//		return mv;
-//	}
-//	
-//	//削除ボタンが押されたとき
-//	@RequestMapping(value="/itemDetail/deleteCart/{code}",method=RequestMethod.POST)
-//	public ModelAndView deletecart(
-//			@PathVariable("code")int code,
-//			ModelAndView mv) {
-//		Cart cart=(Cart)session.getAttribute("cart");
-//		cart.deleteCart(code);
-//		mv.addObject("items",cart.getItems());
-//		mv.setViewName("cart");
-//		return mv;
-//	}
-//	
 	
-	//カートの中身ページで商品一覧商品一覧に戻りたいときの処理
+	//カートの中身ページで商品一覧に戻りたいときの処理
 	@RequestMapping(value="/showItem")
 	public ModelAndView showItem(ModelAndView mv) {
-		//session.invalidate();
+		
 		List<Items> itemList=itemRepository.findAll();
 		mv.addObject("items",itemList);
 		mv.setViewName("showItem");
 		return mv;
 	}
+	// 商品登録画面表示
+		@RequestMapping("/addItem")
+		public String addItem() {
+			return "addItem";
+		}
+
+		// 出品情報の登録ボタンを押したときの処理
+		@RequestMapping(value = "/addItem", method = RequestMethod.POST)
+		public ModelAndView addItem(
+				@RequestParam("name") String name, 
+				@RequestParam(name="price",defaultValue="0") int price,
+				@RequestParam(name="stock",defaultValue="0") int stock, 
+				@RequestParam(name="delivaryDays",defaultValue="0") int delivaryDays,
+				@RequestParam(name="categoryKey",defaultValue="0") int categoryKey,
+				@RequestParam("picture") String picture, ModelAndView mv) {
+			
+			
+			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isZero(categoryKey)||isNull(picture)) {
+				mv.addObject("message", "未入力です");
+				mv.setViewName("addItem");
+				return mv;
+			} else {
+				//データベースに保存する
+				Items items = new Items(name, price, stock, delivaryDays, categoryKey,picture);
+				// 更新する
+				itemRepository.saveAndFlush(items);
+				//商品一覧を表示
+				List<Items> itemList=itemRepository.findAll();
+				//itemInfoをセットする
+				
+				mv.addObject("items",itemList);
+				mv.setViewName("showItem");
+			}
+			return mv;
+		}
+		
+		
+		//出品情報の閲覧の画面表示
+		@RequestMapping("/itemInfo")
+		public String itemInfo() {
+			return "itemInfo";
+		}
+		
+		//出品情報閲覧のURLを押したときの処理
+		@RequestMapping(value="/itemInfo/{code}")
+		public ModelAndView itemInfo(
+				@PathVariable("code")int code,
+				ModelAndView mv) {
+			//１つのコードだけ持ってくる
+			Items item = itemRepository.findById(code).get();
+			mv.addObject("item",item);
+//			Items i = (Items) session.getAttribute("itemInfo");
+			mv.addObject("code", item.getCode());
+			mv.setViewName("itemInfo");
+			
+			return mv;
+		}
+		//出品情報を編集する
+		@RequestMapping(value="/itemInfo/{code}",method=RequestMethod.POST)
+		public ModelAndView confirmItem(
+				@PathVariable("code")int code,
+				@RequestParam("name")String name,
+				@RequestParam(name="price",defaultValue="0") int price,
+				@RequestParam(name="stock",defaultValue="0") int stock, 
+				@RequestParam(name="delivaryDays",defaultValue="0") int delivaryDays,
+				@RequestParam(name="categoryKey",defaultValue="0") int categoryKey,
+				@RequestParam("picture") String picture,
+				ModelAndView mv) {
+			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isZero(categoryKey)||isNull(picture)) {
+				mv.addObject("message", "未入力です");
+				mv.setViewName("itemInfo");
+				return mv;
+			} else {
+				
+				Items item = itemRepository.findById(code).get();
+				
+				item.setName(name);
+				item.setPrice(price);
+				item.setPicture(picture);
+				item.setStock(stock);
+				item.setDelivaryDays(delivaryDays);
+				item.setCategoryKey(categoryKey);
+				
+				// 更新する
+				itemRepository.saveAndFlush(item);
+				//リストを一覧する
+				List<Items> itemList=itemRepository.findAll();
+				mv.addObject("items",itemList);
+				mv.addObject("code",item.getCode());
+				mv.setViewName("showItem");
+			}
+			
+			return mv;
+		}
+		
+		// 出品情報の削除ボタンを押されたとき
+		@RequestMapping(value="/deleteItem/{code}")
+		public ModelAndView deleteItem(
+				@PathVariable("code")int code,
+				ModelAndView mv) {
+			//Itemsのデータベースからコードをとってくる
+			Items item = itemRepository.findById(code).get();
+			
+			// 表示している商品のコードを指定
+			itemRepository.deleteById(item.getCode());
+			// 削除
+			itemRepository.flush();
+			List<Items> itemList=itemRepository.findAll();
+			mv.addObject("items",itemList);
+			mv.addObject("code",item.getCode());
+			mv.setViewName("showItem");
+			return mv;
+		}
+		
+		public boolean isNull(String text) {
+			return (text == null || text.length() == 0);
+		}
+
+		public boolean isZero(int num) {
+			return (num < 0);
+
+		}
+
+
 }

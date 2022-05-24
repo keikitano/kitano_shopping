@@ -3,37 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <title>商品一覧</title>
+
+<link rel="stylesheet" href="/common.css" >
 </head>
 <body>
 	<h1>商品一覧</h1>
-	<!-- 検索ボックス -->
-	<!-- <p>
-		<input type="text" name="itemname" placeholder="検索" />
-		<input type="submit" value="検索" />
-	</p> -->
-	<!-- カテゴリー -->
-	<!-- <p>
-		<a href="/book">本</a>
-		<a href="/dvd">DVD</a>
-	</p> -->
-	
 	 <p>
-	 	<span th:text="|${session.accountInfo.name}さん、ようこそおもちくんの世界へ|"></span>	
+	 	<span th:text="|${session.accountInfo.name}さん、ようこそおもちくんの世界へ|" style="font-size: 25pt ; color: #008000"></span>	
 	</p> 
+	<hr>
 	<p>
-	<a href="/accountInfo">ユーザー情報の閲覧</a>
+	<a href="/accountInfo" style="font-size: 15pt ; color: #000000">ユーザー情報の閲覧</a>
 	</p>
 	<p>
-	<a href="/addItem">出品はこちら</a>
+	<a href="/addItem" style="font-size: 15pt ; color: #ff0000">出品はこちら</a>
 	</p>
+	
 	<!-- 一覧 -->
-	<table  border="1">
+	<table class="itemview-1">
+        <!-- このtrにeach属性をつけてあげてください -->
+        <tr th:each="item:${items}">
+            <td>
+                <!-- 画像 srcは「th:src」でそれぞれのFileに即してあげてください -->
+                <img th:src="|/${item.picture}|" />
+            </td>
+
+            <td >
+                <p th:text="${item.name}">
+                    <b >商品名</b>
+                    &emsp;/在庫&nbsp;<span></span>
+                </p>
+                <p th:text="|\ ${item.price}|">
+                    <span></span>
+                </p>
+                <!-- 改行が必要なごとに、pタグでパーテーションを作成してください 
+                <p>
+                    商品説明とか
+                </p>-->
+                <p class="buttons">
+                    <!-- 必要なボタンをこちらに配置してください -->
+                    <a th:href="|/itemInfo/${item.code}|">
+                        <button>出品情報閲覧・変更</button>
+                    </a>
+                    <a th:href="|/itemDetail/${item.code}|">
+                        <button>商品詳細</button>
+                    </a>
+                </p>
+            </td>
+        </tr>
+    </table>
+	
+	<!-- <table  border="1">
 		<tr>
 
 			<th>商品画像</th>
 			<th>商品名</th>
 			<th>値段</th>
-			<th>商品内容</th>
+			<th>出品情報閲覧・変更</th>
+			<th>商品詳細</th>
 			
 		</tr>
 		
@@ -43,10 +70,11 @@
 			</td>
 			<td th:text="${item.name}"></td>
 			<td th:text="${item.price}"></td>
+			<td><a th:href="|/itemInfo/${item.code}|">出品情報閲覧・変更</a></td>
 			<td><a th:href="|/itemDetail/${item.code}|">商品詳細</a></td>
 			</tr>
 
-	</table>
+	</table> -->
 	
 	
 </body>
