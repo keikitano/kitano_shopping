@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>カートの中身</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
+	<div class="carttitle">
 	<h1>カートの中身</h1>
-
-	<table border="1">
+	</div>
+	<table border="1" class="cart">
 
 		<tr>
 
@@ -25,22 +27,26 @@
 			<td th:text="${item.value.quantity}"></td>
 			<td th:text="${item.value.quantity * item.value.price}"></td>
 			<td>
-				<form th:action="|/itemDetail/deleteCart/${item.value.code}|"method="post">
-					<input type="submit" value="削除">
-					</form>
+				<form th:action="|/itemDetail/deleteCart/${item.value.code}|" method="post">
+					<input type="submit" value="削除" class="cartbutton">
+				</form>
 			</td>
-			
+
 		</tr>
 		<tr>
-		<td align="right" colspan="5" th:text="'総計：'+${total}"></td>
+			<td align="right" colspan="5" th:text="'総計：'+${total}"></td>
 		</tr>
 
 	</table>
+
 	<form action="/purchaseCart" method="post">
-		<input type="submit" value="購入">
-		
+		<p>
+			<input type="submit" value="購入する" class="btn-square">
+		</p>
 	</form>
-	<a href="/showItem">商品詳細</a>
+	<div class="top">
+		<a href="/showItem">商品詳細</a>
+	</div>
 
 </body>
 </html>

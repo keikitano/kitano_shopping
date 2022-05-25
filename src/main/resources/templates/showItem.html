@@ -6,11 +6,16 @@
 
 <link rel="stylesheet" href="/common.css" >
 </head>
-<body>
-	<h1>商品一覧</h1>
-	 <p>
-	 	<span th:text="|${session.accountInfo.name}さん、ようこそおもちくんの世界へ|" style="font-size: 25pt ; color: #008000"></span>	
-	</p> 
+<!-- <body bgcolor=""> -->
+	<body >
+	<div class="showitem1">
+	<h1 >商品一覧</h1>
+	</div>
+	<div class="flowing">
+	 
+	 	<span class="flowing" th:text="|${session.accountInfo.name}さん、ようこそおもちくんの世界へ|"></span>	
+	
+	</div>
 	<hr>
 	<p>
 	<a href="/accountInfo" style="font-size: 15pt ; color: #000000">ユーザー情報の閲覧</a>
@@ -29,11 +34,12 @@
             </td>
 
             <td >
-                <p th:text="${item.name}">
+           
+                <p class="showitem3" th:text="${item.name}">
                     <b >商品名</b>
                     &emsp;/在庫&nbsp;<span></span>
                 </p>
-                <p th:text="|\ ${item.price}|">
+                <p class="showitem4" th:text="|\ ${item.price}|">
                     <span></span>
                 </p>
                 <!-- 改行が必要なごとに、pタグでパーテーションを作成してください 
@@ -43,12 +49,16 @@
                 <p class="buttons">
                     <!-- 必要なボタンをこちらに配置してください -->
                     <a th:href="|/itemInfo/${item.code}|">
-                        <button>出品情報閲覧・変更</button>
+                        <button style="width:200px; height:50px">出品情報閲覧・変更</button>
                     </a>
+                    
+                    
                     <a th:href="|/itemDetail/${item.code}|">
-                        <button>商品詳細</button>
+                        <button style="width:200px; height:50px">商品詳細</button>
+                       
                     </a>
-                </p>
+                    </p>
+                
             </td>
         </tr>
     </table>

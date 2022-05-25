@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
-<h1>ログイン</h1>
+<div class="login">
+<h1 >ログイン</h1>
 <!-- ログインフォーム -->
 <form action="/login" method="post">
 		<!-- ログインフォーム -->
-		<input type="text" name="name" placeholder="名前"> 
+		<input type="text"  name="name" placeholder="名前" style="width:200px; height:20px;" > 
 		<br>
-		<input type="password" name="pass" placeholder="パスワード">
+		<input type="password" name="pass" placeholder="パスワード" style="width:200px; height:20px;">
 		<br>
-		<input type="submit" value="ログイン">
+		<div class="loginbutton05">
+		<input type="submit" value="ログイン" style= "width:100px; height:50px" >
+		</div>
 		<span th:text="${message}" style="color:red"></span>
 		<span th:text="${message1}" style="color:red"></span>
 	</form>
-
+</div>
 </body>
 </html>

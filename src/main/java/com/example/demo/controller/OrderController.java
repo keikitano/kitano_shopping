@@ -22,7 +22,7 @@ public class OrderController {
 	public ModelAndView purchaseCart(
 			
 			ModelAndView mv) {
-
+		session.invalidate();
 		mv.setViewName("purchaseCart");
 		return mv;
 	}

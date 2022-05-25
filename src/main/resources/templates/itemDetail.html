@@ -3,13 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>商品詳細</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
-	<h1>商品詳細</h1>
-	<form th:action="|/itemDetail/addCart/${code}|" method="post">
+	<div class="title1">
+		<h1>商品詳細</h1>
+		<form th:action="|/itemDetail/addCart/${code}|" method="post">
 
+			<table class="itemview-1">
+				<td>
+					<!-- 画像 srcは「th:src」でそれぞれのFileに即してあげてください --> <img
+					th:src="|/${item.picture}|" />
+				</td>
+				<td>
 
-		<table border="1">
+					<p class="showitem3" th:text="${item.name}">
+						<b>商品名</b> &emsp;/在庫&nbsp;<span></span>
+					</p>
+					<p class="showitem4" th:text="|\ ${item.price}|">
+						<span></span>
+					</p> <!-- 改行が必要なごとに、pタグでパーテーションを作成してください 
+                <p>
+                    商品説明とか
+                </p>-->
+                <p class="showitem4" th:text="|${item.stock} 個|">
+						<span></span>
+					</p>
+					<p class="buttons">
+						<!-- 必要なボタンをこちらに配置してください -->
+						<a th:href="|/itemInfo/${item.code}|">
+							<button style="width: 200px; height: 50px">カートに追加</button>
+						</a>
+					</p>
+				</td>
+			</table>
+
+			<!--  <table class="itemview-1">
 			<tr>
 
 				<th>商品画像</th>
@@ -19,7 +48,7 @@
 
 			</tr>
 
-			<!--  <tr th:each="item:${items}">-->
+			
 			<tr>
 				<td><img th:src="|/${item.picture}|"></td>
 				<td th:text="${item.name}"></td>
@@ -27,11 +56,12 @@
 				<td><input type="submit" value="カートに追加" /></td>
 			</tr>
 
-		</table>
-	</form>
-	<form action="/showItem">
-		<a href="/showItem">商品一覧戻る</a>
-	</form>
-
+		</table>-->
+		</form>
+		<form action="/showItem">
+			<a href="/showItem">商品一覧戻る</a>
+		</form>
+	</div>
+	
 </body>
 </html>
