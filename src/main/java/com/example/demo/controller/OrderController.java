@@ -35,6 +35,7 @@ public class OrderController {
 		Cart cart=(Cart)session.getAttribute("cart");
 		cart.deleteCart(code);
 		mv.addObject("items",cart.getItems());
+		mv.addObject("total",cart.getTotal());
 		mv.setViewName("cart");
 		return mv;
 	}

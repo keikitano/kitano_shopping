@@ -10,39 +10,35 @@
 		<h1>出品</h1>
 	</div>
 	<form action="/addItem" method="post">
-		<table class="cart">
+		<table class="cart" border="1">
 
 			<tr>
 				<td>商品名</td>
-				<td><input type="text" name="name" placeholder="商品名"></td>
+				<td><input type="text" name="name" placeholder="商品名" class="input"></td>
 			</tr>
 			<tr>
 				<td>値段</td>
-				<td><input type= "text" name="price" placeholder="値段"></td>
+				<td><input type= "text" name="price" placeholder="値段" class="input"></td>
 			</tr>
 			<tr>
 				<td>在庫</td>
-				<td><input type="text" name="stock" placeholder="在庫数">
+				<td><input type="text" name="stock" placeholder="在庫数" class="input">
 				</td>
 			</tr>
 			<tr>
 				<td>配達日数</td>
-				<td><input type="text" name="delivaryDays" placeholder="配達日数">
+				<td><input type="text" name="delivaryDays" placeholder="配達日数" class="input">
 				</td>
 			</tr>
-			<tr>
-				<td>カテゴリー</td>
-				<td><input type="text" name="categoryKey" placeholder="カテゴリー">
-				</td>
-			</tr>
+			
 			<tr>
 				<td>写真</td>
-				<td><input type="text" name="picture" placeholder="写真"></td>
+				<td><input type="text" name="picture" placeholder="写真" class="input"></td>
 			</tr>
 
 		</table>
 		<p>
-		<input type="submit" value="登録" class="btn-square"> 
+		<input type="submit" value="登録" class="additembtn"> 
 		</p>
 		<span th:text="${message}" style="color: red"></span>
 

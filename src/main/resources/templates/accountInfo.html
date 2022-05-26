@@ -10,7 +10,7 @@
 	<h1 >アカウント情報</h1>
 	</div>
 	<form action="/accountInfo" method="post"></form>
-	<table class="cart">
+	<table class="cart" border="1">
 		<tr>
 			<td>お名前</td>
 			<td th:text="${session.accountInfo.name}"></td>
@@ -38,33 +38,33 @@
 	<h1>お客様情報変更</h1>
 	</div>
 	<form action="/accountInfo" method="post">
-		<table class="cart">
+		<table class="cart" border="1">
 			<tr>
 				<td>お名前</td>
-				<td><input type="text" name="name" placeholder="名前"></td>
+				<td><input type="text" name="name" placeholder="名前" class="input"></td>
 			</tr>
 			<tr>
 				<td>住所</td>
-				<td><input type="text" name="address" placeholder="住所">
+				<td><input type="text" name="address" placeholder="住所" class="input">
 				</td>
 			</tr>
 			<tr>
 				<td>電話番号</td>
-				<td><input type="text" name="tel" placeholder="電話番号"></td>
+				<td><input type="text" name="tel" placeholder="電話番号" class="input"></td>
 			</tr>
 			<tr>
 				<td>e-mail</td>
-				<td><input type="text" name="email" placeholder="e-mail">
+				<td><input type="text" name="email" placeholder="e-mail" class="input">
 				</td>
 			</tr>
 			<tr>
 				<td>パスワード</td>
-				<td><input type="text" name="pass" placeholder="password">
+				<td><input type="text" name="pass" placeholder="password" class="input">
 				</td>
 			</tr>
 		</table>
 		<p>
-		<input type="submit" value="変更" class="btn-square1">
+		<input type="submit" value="変更" class="accountbtn">
 		</p>
 	</form>
 	<hr>
@@ -72,7 +72,7 @@
 	<!-- 削除 -->
 	<form action="/deleteAccount" method="post">
 	<p>
-		<input type="submit" value="削除" class="btn-square1">
+		<input type="submit" value="削除" class="accountbtn">
 		</p>
 	</form>
 

@@ -11,9 +11,10 @@
 		<form th:action="|/itemDetail/addCart/${code}|" method="post">
 
 			<table class="itemview-1">
+				<tr>
 				<td>
-					<!-- 画像 srcは「th:src」でそれぞれのFileに即してあげてください --> <img
-					th:src="|/${item.picture}|" />
+					<!-- 画像 srcは「th:src」でそれぞれのFileに即してあげてください -->
+					 <img th:src="|/${item.picture}|" />
 				</td>
 				<td>
 
@@ -36,6 +37,7 @@
 						</a>
 					</p>
 				</td>
+				</tr>
 			</table>
 
 			<!--  <table class="itemview-1">

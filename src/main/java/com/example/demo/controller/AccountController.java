@@ -60,17 +60,19 @@ public class AccountController {
 //			}
 			// nameとpassをとってくる
 			List<Users> userlist = userRepository.findByNameAndPass(name, pass);
-			// もしuserlistが一致しなかったら
+			// もしuserlistと入力された値が一致しなかったら
 			if (userlist.size() == 0) {
 				mv.addObject("message1", "一致しません");
+				//ログインに戻る
 				mv.setViewName("login");
 			}
 			// 一致したら
 			else {
-				//
+				//セッションに一時的にaccountInfoに情報を保存する
 				session.setAttribute("accountInfo", userlist.get(0));
 				// アイテム一覧を表示
 				List<Items> itemList = itemRepository.findAll();
+				//showitemHTMLのitemsitemsにitemListを追加する
 				mv.addObject("items", itemList);
 				mv.setViewName("showItem");
 			}
@@ -99,7 +101,7 @@ public class AccountController {
 		} else {
 			// データベースに保存
 			Users user = new Users(null, name, address, tel, email, pass);
-
+			//更新する
 			userRepository.saveAndFlush(user);
 			mv.setViewName("login");
 		}

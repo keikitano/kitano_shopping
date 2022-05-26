@@ -10,7 +10,7 @@
 	<h1>出品情報</h1>
 	</div>
 	<form action="/itemInfo" method="post"></form>
-	<table class="cart">
+	<table class="cart" border="1">
 		<tr>
 			<td>商品名</td>
 			<td th:text="${item.name}"></td>
@@ -27,10 +27,7 @@
 			<td>配達日数</td>
 			<td th:text="${item.delivaryDays}"></td>
 		</tr>
-		<tr>
-			<td>カテゴリー</td>
-			<td th:text="${item.categoryKey}"></td>
-		</tr>
+		
 		<tr>
 			<td>写真</td>
 			<td><img th:src="|/${item.picture}|"></td>
@@ -42,39 +39,36 @@
 	<h1>出品情報変更</h1>
 	</div>
 	<form th:action="|/itemInfo/${code}|" method="post">
-		<table class="cart">
+		<table class="cart" border="1">
 			<tr>
 				<td>商品名</td>
-				<td><input type="text" name="name" placeholder="商品名"></td>
+				<td><input type="text" name="name" placeholder="商品名" class="input"></td>
 			</tr>
 			<tr>
 				<td>値段</td>
-				<td><input type="text" name="price" placeholder="値段"></td>
+				<td><input type="text" name="price" placeholder="値段" class="input"></td>
 			</tr>
 			<tr>
 				<td>在庫</td>
-				<td><input type="text" name="stock" placeholder="在庫数"></td>
+				<td><input type="text" name="stock" placeholder="在庫数" class="input"></td>
 			</tr>
 			<tr>
 				<td>配達日数</td>
-				<td><input type="text" name="delivaryDays" placeholder="配達日数">
+				<td><input type="text" name="delivaryDays" placeholder="配達日数" class="input">
 				</td>
 			</tr>
-			<tr>
-				<td>カテゴリー</td>
-				<td><input type="text" name="categoryKey" placeholder="カテゴリー">
-				</td>
-			</tr>
+			
 			<tr>
 				<td>写真</td>
-				<td><input type="text" name="picture" placeholder="写真">
+				<td><input type="text" name="picture" placeholder="写真" class="input">
 				</td>
 			</tr>
 		</table>
-		<p>
+		
 		<input type="submit" value="変更" class="btn-square1">
-		</p>
+		
 	</form>
+	
 	<hr>
 	<span th:text="${message}" style="color: red"></span>
 

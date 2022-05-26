@@ -10,19 +10,29 @@
 <!-- 新規登録フォーム -->
 <h1>新規登録</h1>
 <form action="/newAccount" method="post">
-		<!-- ログインフォーム -->
+		<!-- 入力 -->
 		
-		<input type="text" name="name" placeholder="名前"> 
+		<input type="text" name="name" placeholder="名前" style="width:200px; height:20px;"  class="input"> 
 		<br>
-		<input type="text" name="address" placeholder="住所">
+		<p>
+		<input type="text" name="address" placeholder="住所" style="width:200px; height:20px;" class="input">
 		<br>
-		<input type="text" name="tel" placeholder="電話番号">
+		</p>
+		<p>
+		<input type="text" name="tel" placeholder="電話番号" style="width:200px; height:20px;" class="input">
 		<br>
-		<input type="text" name="email" placeholder="メールアドレス">
+		</p>
+		<p>
+		<input type="text" name="email" placeholder="メールアドレス" style="width:200px; height:20px;"class="input" >
 		<br>
-		<input type="password" name="pass" placeholder="パスワード">
+		</p>
+		<p>
+		<input type="password" name="pass" placeholder="パスワード" style="width:200px; height:20px;" class="input">
 		<br>
-		<input type="submit" value="登録">
+		</p>
+		<p>
+		<input type="submit" class="loginbutton" value="登録">
+		</p>
 		<span th:text="${message}" style="color:red"></span>
 	</form>
 	</div>

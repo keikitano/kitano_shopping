@@ -28,7 +28,9 @@ public class CartController {
 				ModelAndView mv) {
 			//セッションスコープからカート情報を取得する
 			Cart cart=(Cart)session.getAttribute("cart");
+			//カートの中に同じ商品がなかったら
 			if(cart==null) {
+				//セッションに保存する
 				cart=new Cart();
 				session.setAttribute("cart", cart);
 			}
@@ -37,9 +39,10 @@ public class CartController {
 			//商品コードをキーに商品情報を取得し、カートに追加する
 			Items items=itemRepository.findById(code).get();
 			
-			
+			//cartクラスのaddCartメソッドから処理を呼び出す
+			//変数items１から数えれるようにする
 			cart.addCart(items,1);
-			
+			//
 			mv.addObject("items",cart.getItems());
 			mv.addObject("total",cart.getTotal());
 			mv.setViewName("cart");

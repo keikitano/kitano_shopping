@@ -35,7 +35,7 @@ body{
     /* 表示開始位置調整用 */
     padding-top: 50px;
 }
-
+ /* showitem・itemdetailの商品一覧表を出す */
 .itemview-1{
     border-collapse: collapse;
     border-spacing: 5px;
@@ -74,7 +74,7 @@ body{
     margin: 0;
     padding: 5px;
 }
-
+/*showitemの出品情報変更閲覧・商品詳細、itemdetailのカートに追加のボタン*/
 .buttons{
     position: absolute;
     display: inline-block;
@@ -112,12 +112,14 @@ body{
     background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
     background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
 }
+/*itemdetailの商品詳細のタイトル*/
 .title1{
 	text-align:  center; 
 	color:green;
 	font-size:35px;
 	text-shadow: 1px 2px 40px #80ff80
 }
+/*URL類*/
 .top{
 	 
 	 text-align:  center; 
@@ -133,7 +135,7 @@ body{
 }
 
 	
-
+/*商品一覧のタイトル*/
 .showitem1{
 	text-align:  center; 
 	color:green;
@@ -146,24 +148,26 @@ body{
 	font-size:40px;
 	font-family:'Mochiy Pop One';
 }
-
+/*showitemの商品名*/
 .showitem3{
 	color:black;
 	font-size:30px;
 	font-family: 'Kosugi Maru';
 }
+/*showitemの値段*/
 .showitem4{
 	color:black;
 	font-size:25px;
 	
 }
+/*cartのタイトルとiteminfoのタイトルとaccountinfoのタイトル*/
 .carttitle{
 	font-size:30px;
 	text-align:  center;
 	color:green;
 	text-shadow: 1px 2px 40px #80ff80
 }
-
+/*cartの表とiteminfoの表*/
 .cart{
 	 border-collapse: collapse;
     border-spacing: 2px;
@@ -179,9 +183,10 @@ body{
     color:black;
 	
 }
+ /* cartの削除ボタン */
 .cartbutton{
 	 color:black;
-	 background-color: #804000;
+	 background-color: #ff0000;
 }
 .btn-square {
   display: inline-block;
@@ -200,6 +205,7 @@ body{
   transform: translateY(4px);/*下に動く*/
   border-bottom: none;/*線を消す*/
 }
+
 .btn-square1 {
   display: inline-block;
   padding:0.5em 1em;
@@ -217,7 +223,7 @@ body{
   transform: translateY(4px);/*下に動く*/
   border-bottom: none;/*線を消す*/
 }
-
+/*showitemのようこその文字が流れる*/
 .flowing {
   margin: 0;
   font-size: 50px;
@@ -227,7 +233,7 @@ body{
   overflow: hidden;
   animation: flowing-anim 8s;
 }
-
+/*トップ画面のアニメーション*/
 @keyframes flowing-anim {
  0%{
      width: 0%;
@@ -271,5 +277,99 @@ body{
 .a:hover::before {
   transform-origin: 100% 100%;
   transform: scaleY(0);
+}
+/*ログインのボタン*/
+.loginbutton {
+  display: inline-block;
+  text-decoration: none;
+  background: #8cd460;
+  color: rgba(255, 255, 255, 0.47);
+  font-weight: bold;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 5px #8cd460;
+  border: solid 2px rgba(255, 255, 255, 0.47);
+  transition: .4s;
+  font-size:25px
+}
+/*ログインと新規登録のボタンに触れたとき*/
+.loginbutton :hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+/*purchaseの文字を表示するときのアニメーション*/
+@keyframes typing { from { width: 0; } }
+@keyframes caret { 50% { border-color: transparent; } }
+/*purchaseの文字を表示するときのアニメーション*/
+.purchase {
+
+font-family: 'Mochiy Pop One'; 
+background-image: -webkit-gradient(linear, right top, left top, from(#9be15d), to(#00e3ae));
+background-image: -webkit-linear-gradient(right, #9be15d 0%, #00e3ae 100%);
+background-image: linear-gradient(to left, #9be15d 0%, #00e3ae 100%);
+width: 23ch;
+border-right: .08em solid;
+overflow: hidden;
+font-size: 4em;
+white-space: nowrap;
+animation: typing 3s steps(20, end), caret .3s step-end infinite;
+}
+/*cartの購入ボタンとadditemの出品ボタンの登録おされたとき*/
+.additembtn {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffba78;
+  color: #ff0000;
+  width: 130px;
+  height: 100px;
+  font-size: 21px;
+  line-height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #d29963;
+  text-shadow: -1px -1px rgba(255, 255, 255, 0.43), 1px 1px rgba(0, 0, 0, 0.49);
+  transition: .4s;
+}
+.additembtn:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+  border-bottom: none;
+}
+/*accountinfoの変更と削除ボタン*/
+.accountbtn {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffba78;
+  color: #ff0000;
+  width: 100px;
+  height: 50px;
+  font-size: 15px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #d29963;
+  text-shadow: -1px -1px rgba(255, 255, 255, 0.43), 1px 1px rgba(0, 0, 0, 0.49);
+  transition: .4s;
+}
+.accountbtn:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+  border-bottom: none;
+}
+/*入力フォームを赤にする*/
+.input {
+background-color: #ff8080;
 }
 

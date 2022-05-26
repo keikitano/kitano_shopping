@@ -11,6 +11,7 @@
 	<div class="showitem1">
 	<h1 >商品一覧</h1>
 	</div>
+	<!--  アニメーション-->
 	<div class="flowing">
 	 
 	 	<span class="flowing" th:text="|${session.accountInfo.name}さん、ようこそおもちくんの世界へ|"></span>	
@@ -24,7 +25,8 @@
 	<a href="/addItem" style="font-size: 15pt ; color: #ff0000">出品はこちら</a>
 	</p>
 	
-	<!-- 一覧 -->
+	<!--商品 一覧 -->
+	<!--商品 一覧のcss -->
 	<table class="itemview-1">
         <!-- このtrにeach属性をつけてあげてください -->
         <tr th:each="item:${items}">
@@ -34,7 +36,7 @@
             </td>
 
             <td >
-           
+           		
                 <p class="showitem3" th:text="${item.name}">
                     <b >商品名</b>
                     &emsp;/在庫&nbsp;<span></span>

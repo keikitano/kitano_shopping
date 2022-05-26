@@ -39,12 +39,13 @@ public class ItemController {
 	//カートの中身ページで商品一覧に戻りたいときの処理
 	@RequestMapping(value="/showItem")
 	public ModelAndView showItem(ModelAndView mv) {
-		
+		//一覧を表示する
 		List<Items> itemList=itemRepository.findAll();
 		mv.addObject("items",itemList);
 		mv.setViewName("showItem");
 		return mv;
 	}
+	
 	// 商品登録画面表示
 		@RequestMapping("/addItem")
 		public String addItem() {
@@ -62,25 +63,24 @@ public class ItemController {
 				@RequestParam("picture") String picture, ModelAndView mv) {
 			
 			
-			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isZero(categoryKey)||isNull(picture)) {
+			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isNull(picture)) {
 				mv.addObject("message", "未入力です");
 				mv.setViewName("addItem");
 				return mv;
 			} else {
 				//データベースに保存する
-				Items items = new Items(name, price, stock, delivaryDays, categoryKey,picture);
+				Items items = new Items(name, price, stock, delivaryDays, null,picture);
 				// 更新する
 				itemRepository.saveAndFlush(items);
 				//商品一覧を表示
 				List<Items> itemList=itemRepository.findAll();
-				//itemInfoをセットする
+				
 				
 				mv.addObject("items",itemList);
 				mv.setViewName("showItem");
 			}
 			return mv;
 		}
-		
 		
 		//出品情報の閲覧の画面表示
 		@RequestMapping("/itemInfo")
@@ -95,8 +95,10 @@ public class ItemController {
 				ModelAndView mv) {
 			//１つのコードだけ持ってくる
 			Items item = itemRepository.findById(code).get();
+			//iteminfoHTMLのitemに変数itemを追加する
 			mv.addObject("item",item);
 //			Items i = (Items) session.getAttribute("itemInfo");
+			//@PathVariableの変数名codeに１つだけ持ってきたコードをセットする
 			mv.addObject("code", item.getCode());
 			mv.setViewName("itemInfo");
 			
@@ -110,15 +112,23 @@ public class ItemController {
 				@RequestParam(name="price",defaultValue="0") int price,
 				@RequestParam(name="stock",defaultValue="0") int stock, 
 				@RequestParam(name="delivaryDays",defaultValue="0") int delivaryDays,
-				@RequestParam(name="categoryKey",defaultValue="0") int categoryKey,
+				//@RequestParam(name="categoryKey",defaultValue="0") int categoryKey,
 				@RequestParam("picture") String picture,
 				ModelAndView mv) {
-			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isZero(categoryKey)||isNull(picture)) {
+			//もし未入力の場合
+			if (isNull(name) ||isZero(price)||isZero(stock)||isZero(delivaryDays)||isNull(picture)) {
 				mv.addObject("message", "未入力です");
+				//１つのコードだけ持ってくる
+				Items item = itemRepository.findById(code).get();
+				//iteminfoHTMLのitemに変数itemを追加する
+				mv.addObject("item",item);
+				//@PathVariableの変数名codeに１つだけ持ってきたコードをセットする
+				mv.addObject("code", item.getCode());
 				mv.setViewName("itemInfo");
 				return mv;
+			//入力されていたら
 			} else {
-				
+				//１つのコードだけ持ってくる
 				Items item = itemRepository.findById(code).get();
 				
 				item.setName(name);
@@ -126,7 +136,7 @@ public class ItemController {
 				item.setPicture(picture);
 				item.setStock(stock);
 				item.setDelivaryDays(delivaryDays);
-				item.setCategoryKey(categoryKey);
+				
 				
 				// 更新する
 				itemRepository.saveAndFlush(item);
