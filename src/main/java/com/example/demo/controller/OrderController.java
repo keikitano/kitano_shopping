@@ -32,7 +32,9 @@ public class OrderController {
 	public ModelAndView deletecart(
 			@PathVariable("code")int code,
 			ModelAndView mv) {
+		//カートクラスからセッション情報を引きだす
 		Cart cart=(Cart)session.getAttribute("cart");
+		//指定されたコードを消す
 		cart.deleteCart(code);
 		mv.addObject("items",cart.getItems());
 		mv.addObject("total",cart.getTotal());
