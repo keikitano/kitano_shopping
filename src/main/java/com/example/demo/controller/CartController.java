@@ -42,8 +42,9 @@ public class CartController {
 			//cartクラスのaddCartメソッドから処理を呼び出す
 			//変数items１から数えれるようにする
 			cart.addCart(items,1);
-			//
+			//cartHTMLのitemsからコードを追加する
 			mv.addObject("items",cart.getItems());
+			//cartHTMLのctotalから総計をだす
 			mv.addObject("total",cart.getTotal());
 			mv.setViewName("cart");
 			
